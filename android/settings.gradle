@@ -1,0 +1,3 @@
+rootProject.name = 'szerver'
+
+include ':app'
