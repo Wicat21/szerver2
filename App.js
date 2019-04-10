@@ -4,7 +4,7 @@ import {Platform, ActivityIndicator, StyleSheet, Text, View, TouchableOpacity, S
 export default class App extends Component<Props> {
   constructor(props){
     super(props);
-    this.state = { isLoading:{}, dataSource: []};
+    this.state = { isLoading:false, dataSource: []};
   }
 
   getJedi() {
@@ -27,6 +27,7 @@ export default class App extends Component<Props> {
     })
     .catch((error) => {
       console.error(error)
+      this.setState({isLoading:false})
     })
   }
   
@@ -49,6 +50,7 @@ export default class App extends Component<Props> {
     })
     .catch((error) => {
       console.error(error)
+      this.setState({isLoading:false})
     })
   }
 
@@ -71,11 +73,12 @@ export default class App extends Component<Props> {
     })
     .catch((error) => {
       console.error(error)
+      this.setState({isLoading:false})
     })
   }
 
   list() {
-    if (this.state.isLoading=true) { 
+    if (this.state.isLoading==true) { 
       return(
         <View style={{flex: 1, padding: 20}}>
           <ActivityIndicator/>
@@ -83,6 +86,7 @@ export default class App extends Component<Props> {
       )
       console.log('nemírja')
     } else {
+      if (this.state.dataSource.length > 0){
         console.log('kiírja')
         this.state.dataSource.map((item, i) => {
           return (                    
@@ -93,7 +97,7 @@ export default class App extends Component<Props> {
             </View>
           )
         })
-      }
+      }}
   }
 
   render() {
