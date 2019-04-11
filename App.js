@@ -20,7 +20,7 @@ export default class App extends Component<Props> {
     .then((response) => response.json())
     .then((responseJson) => {
       this.setState({
-          dataSource: responseJson,
+          dataSource: responseJson.result,
           isLoading: false
       })
       console.log(this.state.dataSource) //empty array
@@ -32,6 +32,7 @@ export default class App extends Component<Props> {
   }
   
   getBolygo() {
+  this.setState({isLoading:true})  
   return fetch('https://swapi.co/api/planets/', {
       method: 'GET',
       headers: {
@@ -43,7 +44,7 @@ export default class App extends Component<Props> {
     .then((response) => response.json())
     .then((responseJson) => {
       this.setState({
-          dataSource: responseJson,
+          dataSource: responseJson.result,
           isLoading: false
       })
       console.log(this.state.dataSource) //empty array
@@ -55,6 +56,7 @@ export default class App extends Component<Props> {
   }
 
   getJarmu() {
+  this.setState({isLoading:true})  
   return fetch('https://swapi.co/api/vehicles/', {
       method: 'GET',
       headers: {
@@ -66,7 +68,7 @@ export default class App extends Component<Props> {
     .then((response) => response.json())
     .then((responseJson) => {
       this.setState({
-          dataSource: responseJson,
+          dataSource: responseJson.result,
           isLoading: false
       })
       console.log(this.state.dataSource) //empty array
