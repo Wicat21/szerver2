@@ -20,10 +20,10 @@ export default class App extends Component<Props> {
     .then((response) => response.json())
     .then((responseJson) => {
       this.setState({
-          dataSource: responseJson.result,
+          dataSource: responseJson,
           isLoading: false
       })
-      console.log(this.state.dataSource) //empty array
+      console.log(this.state.dataSource) 
     })
     .catch((error) => {
       console.error(error)
@@ -44,10 +44,10 @@ export default class App extends Component<Props> {
     .then((response) => response.json())
     .then((responseJson) => {
       this.setState({
-          dataSource: responseJson.result,
+          dataSource: responseJson,
           isLoading: false
       })
-      console.log(this.state.dataSource) //empty array
+      console.log(this.state.dataSource) 
     })
     .catch((error) => {
       console.error(error)
@@ -68,10 +68,10 @@ export default class App extends Component<Props> {
     .then((response) => response.json())
     .then((responseJson) => {
       this.setState({
-          dataSource: responseJson.result,
+          dataSource: responseJson,
           isLoading: false
       })
-      console.log(this.state.dataSource) //empty array
+      console.log(this.state.dataSource) 
     })
     .catch((error) => {
       console.error(error)
@@ -81,8 +81,8 @@ export default class App extends Component<Props> {
 
   list() {
     if (this.state.isLoading==true) { 
-      return(
-        <View style={{flex: 1, padding: 20}}>
+      return (
+        <View style={{height:500, padding: 20}}>
           <ActivityIndicator/>
         </View>
       )
