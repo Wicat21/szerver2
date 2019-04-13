@@ -19,11 +19,12 @@ export default class App extends Component<Props> {
     })
     .then((response) => response.json())
     .then((responseJson) => {
+      console.log(responseJson)
       this.setState({
-          dataSource: responseJson,
+          dataSource: responseJson.results,
           isLoading: false
       })
-      console.log(this.state.dataSource) 
+      console.log(this.state.dataSource) //empty array
     })
     .catch((error) => {
       console.error(error)
@@ -44,10 +45,10 @@ export default class App extends Component<Props> {
     .then((response) => response.json())
     .then((responseJson) => {
       this.setState({
-          dataSource: responseJson,
+          dataSource: responseJson.results,
           isLoading: false
       })
-      console.log(this.state.dataSource) 
+      console.log(this.state.dataSource) //empty array
     })
     .catch((error) => {
       console.error(error)
@@ -68,10 +69,10 @@ export default class App extends Component<Props> {
     .then((response) => response.json())
     .then((responseJson) => {
       this.setState({
-          dataSource: responseJson,
+          dataSource: responseJson.results,
           isLoading: false
       })
-      console.log(this.state.dataSource) 
+      console.log(this.state.dataSource) //empty array
     })
     .catch((error) => {
       console.error(error)
@@ -80,31 +81,40 @@ export default class App extends Component<Props> {
   }
 
   list() {
-    if (this.state.isLoading==true) { 
-      return (
-        <View style={{height:500, padding: 20}}>
+    if (this.state.isLoading===true) { 
+      return(
+        <View style={{flex: 1, padding: 20}}>
           <ActivityIndicator/>
         </View>
       )
       console.log('nemírja')
     } else {
-      if (this.state.dataSource.length > 0){
+      if (this.state.dataSource){
         console.log('kiírja')
-        this.state.dataSource.map((item, i) => {
+        return(
+          <View style={{flex:1}}>
+
+        {this.state.dataSource.map((item, i) => {
+          console.log(item)
           return (                    
-            <View style={{height:500}}>
+            <View style={styles.nameStyle}>
                 <Text style={styles.textStyle}>
-                  {dataSource.name}
+                  {item.name}
                 </Text>
             </View>
           )
-        })
-      }}
+          
+        })}
+            </View>
+
+        )
+      }
+    }
   }
 
   render() {
     return (
-      <View>
+      <View style={{flex:1}}>
         <View style={styles.headerStyle}>
             <TouchableOpacity style={styles.buttonStyle} onPress={()=>this.getJedi()}>
               <Text style={styles.buttonText}> Jedik </Text>
@@ -116,9 +126,7 @@ export default class App extends Component<Props> {
               <Text style={styles.buttonText}> Járművek </Text>
             </TouchableOpacity>
         </View>
-        <ScrollView>
           {this.list()}
-        </ScrollView>
       </View>
     );
   }
@@ -165,4 +173,9 @@ const styles = StyleSheet.create({
     paddingLeft: 5,
     fontSize: 15,
   },
+  nameStyle: {
+    backgroundColor: '#ddd',
+    height: 20,
+    borderColor: 'blue',
+  }
 });
